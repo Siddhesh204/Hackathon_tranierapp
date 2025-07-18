@@ -1,4 +1,4 @@
-# Django models for a training timetable application
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, Group, Permission
 
@@ -59,6 +59,7 @@ class Trainer(models.Model):
 class Utilization(models.Model):
     trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
     course_name = models.CharField(max_length=255)
+    category = models.CharField(max_length=50, choices=[('yoga', 'Yoga'), ('fitness', 'Fitness'), ('workshop', 'Workshop')], default='fitness')
     session_date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()

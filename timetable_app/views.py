@@ -29,6 +29,7 @@ class CalendarView(LoginRequiredMixin, TemplateView):
                     'extendedProps': {
                         'summary': f"{util.course_name} - {util.start_time.strftime('%H:%M')} to {util.end_time.strftime('%H:%M')} at {util.location or 'N/A'}",
                         'highlight': util.session_date == today,
+                        'category': util.category
                     }
                 })
             context['events'] = events
@@ -55,6 +56,7 @@ def admin_schedule(request):
             'extendedProps': {
                 'summary': f"{util.course_name} - {util.start_time.strftime('%H:%M')} to {util.end_time.strftime('%H:%M')} at {util.location or 'N/A'} (Trainer: {util.trainer.name})",
                 'highlight': util.session_date == today,
+                'category': util.category
             }
         }
         for util in utilizations

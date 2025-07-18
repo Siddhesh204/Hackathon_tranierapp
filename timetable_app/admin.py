@@ -57,10 +57,13 @@ class MemberAdmin(UserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
 
+# Custom admin for Utilization
+class UtilizationAdmin(admin.ModelAdmin):
+    list_display = ('course_name', 'trainer', 'category', 'session_date', 'start_time', 'end_time', 'location')
+    list_filter = ('category', 'session_date', 'trainer')
+    search_fields = ('course_name', 'location')
+
 # Register models
 admin.site.register(Member, MemberAdmin)
 admin.site.register(Trainer)
-admin.site.register(Utilization)
-
-
-
+admin.site.register(Utilization, UtilizationAdmin)
